@@ -1,0 +1,558 @@
+[gd_scene load_steps=13 format=3 uid="uid://il43tyx3sosq"]
+
+[ext_resource type="PackedScene" uid="uid://car2xw37u22f" path="res://dirtblock.tscn" id="1_1oedy"]
+[ext_resource type="Texture2D" uid="uid://b3ujtnyutsjy0" path="res://Dirt.png" id="1_y5juh"]
+[ext_resource type="Texture2D" uid="uid://csacoqql5jt7w" path="res://mcdirttexture.png" id="2_fjlqq"]
+[ext_resource type="Script" path="res://player.gd" id="2_v370m"]
+[ext_resource type="Script" path="res://camera.gd" id="3_iu6yx"]
+[ext_resource type="PackedScene" uid="uid://c5t0t6fo8cn8j" path="res://ray_cast_3d.tscn" id="6_gbh11"]
+[ext_resource type="Script" path="res://ray_cast_3d.gd" id="7_qn4rs"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x53i7"]
+albedo_texture = ExtResource("1_y5juh")
+
+[sub_resource type="BoxMesh" id="BoxMesh_2ldnx"]
+lightmap_size_hint = Vector2i(28, 42)
+material = SubResource("StandardMaterial3D_x53i7")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ymm88"]
+albedo_texture = ExtResource("2_fjlqq")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qo524"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g21nq"]
+size = Vector3(0.5, 1, 0.5)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Floor" type="Node3D" parent="."]
+visible = false
+
+[node name="Dirtblock" parent="Floor" instance=ExtResource("1_1oedy")]
+
+[node name="Dirtblock2" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Dirtblock2"]
+mesh = SubResource("BoxMesh_2ldnx")
+surface_material_override/0 = SubResource("StandardMaterial3D_ymm88")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Dirtblock2"]
+shape = SubResource("BoxShape3D_qo524")
+
+[node name="Dirtblock3" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Dirtblock3"]
+mesh = SubResource("BoxMesh_2ldnx")
+surface_material_override/0 = SubResource("StandardMaterial3D_ymm88")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Dirtblock3"]
+shape = SubResource("BoxShape3D_qo524")
+
+[node name="Dirtblock4" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Dirtblock4"]
+mesh = SubResource("BoxMesh_2ldnx")
+skeleton = NodePath("../../Dirtblock3")
+surface_material_override/0 = SubResource("StandardMaterial3D_ymm88")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Dirtblock4"]
+shape = SubResource("BoxShape3D_qo524")
+
+[node name="Dirtblock5" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Dirtblock5"]
+mesh = SubResource("BoxMesh_2ldnx")
+surface_material_override/0 = SubResource("StandardMaterial3D_ymm88")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Dirtblock5"]
+shape = SubResource("BoxShape3D_qo524")
+
+[node name="Dirtblock6" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Dirtblock6"]
+mesh = SubResource("BoxMesh_2ldnx")
+skeleton = NodePath("../../Dirtblock3")
+surface_material_override/0 = SubResource("StandardMaterial3D_ymm88")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Dirtblock6"]
+shape = SubResource("BoxShape3D_qo524")
+
+[node name="Dirtblock7" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Dirtblock7"]
+mesh = SubResource("BoxMesh_2ldnx")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_ymm88")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Dirtblock7"]
+shape = SubResource("BoxShape3D_qo524")
+
+[node name="Dirtblock8" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Dirtblock8"]
+mesh = SubResource("BoxMesh_2ldnx")
+surface_material_override/0 = SubResource("StandardMaterial3D_ymm88")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Dirtblock8"]
+shape = SubResource("BoxShape3D_qo524")
+
+[node name="Dirtblock9" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Dirtblock9"]
+mesh = SubResource("BoxMesh_2ldnx")
+surface_material_override/0 = SubResource("StandardMaterial3D_ymm88")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Dirtblock9"]
+shape = SubResource("BoxShape3D_qo524")
+
+[node name="Dirtblock10" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Dirtblock10"]
+mesh = SubResource("BoxMesh_2ldnx")
+skeleton = NodePath("../../Dirtblock3")
+surface_material_override/0 = SubResource("StandardMaterial3D_ymm88")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Dirtblock10"]
+shape = SubResource("BoxShape3D_qo524")
+
+[node name="Dirtblock11" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Dirtblock11"]
+mesh = SubResource("BoxMesh_2ldnx")
+surface_material_override/0 = SubResource("StandardMaterial3D_ymm88")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Dirtblock11"]
+shape = SubResource("BoxShape3D_qo524")
+
+[node name="Dirtblock12" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Dirtblock12"]
+mesh = SubResource("BoxMesh_2ldnx")
+skeleton = NodePath("../../Dirtblock3")
+surface_material_override/0 = SubResource("StandardMaterial3D_ymm88")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Dirtblock12"]
+shape = SubResource("BoxShape3D_qo524")
+
+[node name="Dirtblock13" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Dirtblock13"]
+mesh = SubResource("BoxMesh_2ldnx")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_ymm88")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Dirtblock13"]
+shape = SubResource("BoxShape3D_qo524")
+
+[node name="Dirtblock14" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Dirtblock14"]
+mesh = SubResource("BoxMesh_2ldnx")
+surface_material_override/0 = SubResource("StandardMaterial3D_ymm88")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Dirtblock14"]
+shape = SubResource("BoxShape3D_qo524")
+
+[node name="Dirtblock15" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 2)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Dirtblock15"]
+mesh = SubResource("BoxMesh_2ldnx")
+surface_material_override/0 = SubResource("StandardMaterial3D_ymm88")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Dirtblock15"]
+shape = SubResource("BoxShape3D_qo524")
+
+[node name="Dirtblock16" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Dirtblock16"]
+mesh = SubResource("BoxMesh_2ldnx")
+skeleton = NodePath("../../Dirtblock3")
+surface_material_override/0 = SubResource("StandardMaterial3D_ymm88")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Dirtblock16"]
+shape = SubResource("BoxShape3D_qo524")
+
+[node name="Dirtblock17" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 2)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Dirtblock17"]
+mesh = SubResource("BoxMesh_2ldnx")
+surface_material_override/0 = SubResource("StandardMaterial3D_ymm88")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Dirtblock17"]
+shape = SubResource("BoxShape3D_qo524")
+
+[node name="Dirtblock18" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Dirtblock18"]
+mesh = SubResource("BoxMesh_2ldnx")
+skeleton = NodePath("../../Dirtblock3")
+surface_material_override/0 = SubResource("StandardMaterial3D_ymm88")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Dirtblock18"]
+shape = SubResource("BoxShape3D_qo524")
+
+[node name="Dirtblock19" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 2)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Dirtblock19"]
+mesh = SubResource("BoxMesh_2ldnx")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_ymm88")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Dirtblock19"]
+shape = SubResource("BoxShape3D_qo524")
+
+[node name="Dirtblock20" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Dirtblock20"]
+mesh = SubResource("BoxMesh_2ldnx")
+surface_material_override/0 = SubResource("StandardMaterial3D_ymm88")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Dirtblock20"]
+shape = SubResource("BoxShape3D_qo524")
+
+[node name="Dirtblock21" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 2)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Dirtblock21"]
+mesh = SubResource("BoxMesh_2ldnx")
+surface_material_override/0 = SubResource("StandardMaterial3D_ymm88")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Dirtblock21"]
+shape = SubResource("BoxShape3D_qo524")
+
+[node name="Dirtblock22" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Dirtblock22"]
+mesh = SubResource("BoxMesh_2ldnx")
+skeleton = NodePath("../../Dirtblock3")
+surface_material_override/0 = SubResource("StandardMaterial3D_ymm88")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Dirtblock22"]
+shape = SubResource("BoxShape3D_qo524")
+
+[node name="Dirtblock23" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 2)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Dirtblock23"]
+mesh = SubResource("BoxMesh_2ldnx")
+surface_material_override/0 = SubResource("StandardMaterial3D_ymm88")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Dirtblock23"]
+shape = SubResource("BoxShape3D_qo524")
+
+[node name="Dirtblock24" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Dirtblock24"]
+mesh = SubResource("BoxMesh_2ldnx")
+skeleton = NodePath("../../Dirtblock3")
+surface_material_override/0 = SubResource("StandardMaterial3D_ymm88")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Dirtblock24"]
+shape = SubResource("BoxShape3D_qo524")
+
+[node name="Dirtblock25" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Dirtblock25"]
+mesh = SubResource("BoxMesh_2ldnx")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_ymm88")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Dirtblock25"]
+shape = SubResource("BoxShape3D_qo524")
+
+[node name="Dirtblock26" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Dirtblock26"]
+mesh = SubResource("BoxMesh_2ldnx")
+surface_material_override/0 = SubResource("StandardMaterial3D_ymm88")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Dirtblock26"]
+shape = SubResource("BoxShape3D_qo524")
+
+[node name="Dirtblock27" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -4)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Dirtblock27"]
+mesh = SubResource("BoxMesh_2ldnx")
+surface_material_override/0 = SubResource("StandardMaterial3D_ymm88")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Dirtblock27"]
+shape = SubResource("BoxShape3D_qo524")
+
+[node name="Dirtblock28" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Dirtblock28"]
+mesh = SubResource("BoxMesh_2ldnx")
+skeleton = NodePath("../../Dirtblock3")
+surface_material_override/0 = SubResource("StandardMaterial3D_ymm88")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Dirtblock28"]
+shape = SubResource("BoxShape3D_qo524")
+
+[node name="Dirtblock29" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -4)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Dirtblock29"]
+mesh = SubResource("BoxMesh_2ldnx")
+surface_material_override/0 = SubResource("StandardMaterial3D_ymm88")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Dirtblock29"]
+shape = SubResource("BoxShape3D_qo524")
+
+[node name="Dirtblock30" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Dirtblock30"]
+mesh = SubResource("BoxMesh_2ldnx")
+skeleton = NodePath("../../Dirtblock3")
+surface_material_override/0 = SubResource("StandardMaterial3D_ymm88")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Dirtblock30"]
+shape = SubResource("BoxShape3D_qo524")
+
+[node name="Dirtblock31" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -4)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Dirtblock31"]
+mesh = SubResource("BoxMesh_2ldnx")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_ymm88")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Dirtblock31"]
+shape = SubResource("BoxShape3D_qo524")
+
+[node name="Dirtblock32" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Dirtblock32"]
+mesh = SubResource("BoxMesh_2ldnx")
+surface_material_override/0 = SubResource("StandardMaterial3D_ymm88")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Dirtblock32"]
+shape = SubResource("BoxShape3D_qo524")
+
+[node name="Dirtblock33" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -4)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Dirtblock33"]
+mesh = SubResource("BoxMesh_2ldnx")
+surface_material_override/0 = SubResource("StandardMaterial3D_ymm88")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Dirtblock33"]
+shape = SubResource("BoxShape3D_qo524")
+
+[node name="Dirtblock34" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Dirtblock34"]
+mesh = SubResource("BoxMesh_2ldnx")
+skeleton = NodePath("../../Dirtblock3")
+surface_material_override/0 = SubResource("StandardMaterial3D_ymm88")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Dirtblock34"]
+shape = SubResource("BoxShape3D_qo524")
+
+[node name="Dirtblock35" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -4)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Dirtblock35"]
+mesh = SubResource("BoxMesh_2ldnx")
+surface_material_override/0 = SubResource("StandardMaterial3D_ymm88")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Dirtblock35"]
+shape = SubResource("BoxShape3D_qo524")
+
+[node name="Dirtblock36" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Dirtblock36"]
+mesh = SubResource("BoxMesh_2ldnx")
+skeleton = NodePath("../../Dirtblock3")
+surface_material_override/0 = SubResource("StandardMaterial3D_ymm88")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Dirtblock36"]
+shape = SubResource("BoxShape3D_qo524")
+
+[node name="Dirtblock37" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Dirtblock37"]
+mesh = SubResource("BoxMesh_2ldnx")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_ymm88")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Dirtblock37"]
+shape = SubResource("BoxShape3D_qo524")
+
+[node name="Dirtblock38" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Dirtblock38"]
+mesh = SubResource("BoxMesh_2ldnx")
+surface_material_override/0 = SubResource("StandardMaterial3D_ymm88")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Dirtblock38"]
+shape = SubResource("BoxShape3D_qo524")
+
+[node name="Dirtblock39" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, -2)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Dirtblock39"]
+mesh = SubResource("BoxMesh_2ldnx")
+surface_material_override/0 = SubResource("StandardMaterial3D_ymm88")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Dirtblock39"]
+shape = SubResource("BoxShape3D_qo524")
+
+[node name="Dirtblock40" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, -3)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Dirtblock40"]
+mesh = SubResource("BoxMesh_2ldnx")
+skeleton = NodePath("../../Dirtblock3")
+surface_material_override/0 = SubResource("StandardMaterial3D_ymm88")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Dirtblock40"]
+shape = SubResource("BoxShape3D_qo524")
+
+[node name="Dirtblock41" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, -2)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Dirtblock41"]
+mesh = SubResource("BoxMesh_2ldnx")
+surface_material_override/0 = SubResource("StandardMaterial3D_ymm88")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Dirtblock41"]
+shape = SubResource("BoxShape3D_qo524")
+
+[node name="Dirtblock42" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -3)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Dirtblock42"]
+mesh = SubResource("BoxMesh_2ldnx")
+skeleton = NodePath("../../Dirtblock3")
+surface_material_override/0 = SubResource("StandardMaterial3D_ymm88")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Dirtblock42"]
+shape = SubResource("BoxShape3D_qo524")
+
+[node name="Dirtblock43" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -2)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Dirtblock43"]
+mesh = SubResource("BoxMesh_2ldnx")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_ymm88")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Dirtblock43"]
+shape = SubResource("BoxShape3D_qo524")
+
+[node name="Dirtblock44" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -3)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Dirtblock44"]
+mesh = SubResource("BoxMesh_2ldnx")
+surface_material_override/0 = SubResource("StandardMaterial3D_ymm88")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Dirtblock44"]
+shape = SubResource("BoxShape3D_qo524")
+
+[node name="Dirtblock45" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -2)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Dirtblock45"]
+mesh = SubResource("BoxMesh_2ldnx")
+surface_material_override/0 = SubResource("StandardMaterial3D_ymm88")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Dirtblock45"]
+shape = SubResource("BoxShape3D_qo524")
+
+[node name="Dirtblock46" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -3)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Dirtblock46"]
+mesh = SubResource("BoxMesh_2ldnx")
+skeleton = NodePath("../../Dirtblock3")
+surface_material_override/0 = SubResource("StandardMaterial3D_ymm88")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Dirtblock46"]
+shape = SubResource("BoxShape3D_qo524")
+
+[node name="Dirtblock47" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -2)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Dirtblock47"]
+mesh = SubResource("BoxMesh_2ldnx")
+surface_material_override/0 = SubResource("StandardMaterial3D_ymm88")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Dirtblock47"]
+shape = SubResource("BoxShape3D_qo524")
+
+[node name="Dirtblock48" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -3)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Dirtblock48"]
+mesh = SubResource("BoxMesh_2ldnx")
+skeleton = NodePath("../../Dirtblock3")
+surface_material_override/0 = SubResource("StandardMaterial3D_ymm88")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Dirtblock48"]
+shape = SubResource("BoxShape3D_qo524")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 21.3705, 1.5, 18.8569)
+script = ExtResource("2_v370m")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("BoxShape3D_g21nq")
+
+[node name="CameraPivot" type="Node3D" parent="CharacterBody3D"]
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0.31239, 0)
+fov = 58.1577
+script = ExtResource("3_iu6yx")
+
+[node name="RayCast3D" parent="CharacterBody3D/CameraPivot/Camera3D" instance=ExtResource("6_gbh11")]
+transform = Transform3D(1, 0, 0, 0, -8.74228e-08, -2, 0, 1, -4.37114e-08, 0, -0.02478, 0)
+target_position = Vector3(0, -6.66, 0)
+script = ExtResource("7_qn4rs")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.693402, -1.34018e-08, -0.720551, 0.720551, 3.14963e-08, 0.693402, 1.34018e-08, -1, 3.14963e-08, 0, 29.6143, 0)
+light_color = Color(0.941176, 1, 1, 1)
+light_energy = 3.052
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+light_bake_mode = 0
+shadow_bias = 0.3
+shadow_normal_bias = 1.091
+shadow_transmittance_bias = -0.596
+shadow_opacity = 0.0
+shadow_blur = 2.235
+
+[node name="GridMap" type="GridMap" parent="."]
